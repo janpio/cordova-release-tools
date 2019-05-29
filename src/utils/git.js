@@ -32,6 +32,19 @@ exports.remoteCommitsToPull = async (until = 'HEAD') => {
 	return history;
 };
 
+exports.localCommitsNotPushed = async () => {
+    let commits;
+    try { // Gracefully handle no remote set up.
+        commits = await execa.stdout('git', ['cherry', '-v']);
+    } catch (_) {}
+
+    if (commits) {
+        return commits.split('\n').length;
+    }
+
+    return 0;
+};
+
 exports.commitcountSinceLatestTag = async () => {
     const latestTag = await exports.latestTag()
     return exports.remoteCommitsToPull(latestTag)

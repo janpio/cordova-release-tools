@@ -26,9 +26,11 @@ class IdentifyCommand extends Command {
     console.log()
 
     console.log("current branch is: \t\t" + await git.currentBranch())  
-    console.log("local checkout (fetch) is: \t" + ((await git.isCheckoutFetched()) ? chalk.bgGreen('current') : chalk.bgRed('outdated') + ' - You should `git fetch origin` the remote changes first'))
+    console.log("local checkout is: \t\t" + ((await git.isCheckoutFetched()) ? chalk.bgGreen('fully fetched from remote') : chalk.bgRed('not fetched from remote') + ' - You should `git fetch origin` the remote changes first'))
     const remoteCommitsToPull = await git.remoteCommitsToPull()
-    console.log("local checkout (pull) is: \t" + ((remoteCommitsToPull == 0) ? chalk.bgGreen('current') : chalk.bgRed('outdated') + ' - ' + remoteCommitsToPull + ' commits to `git pull` from remote'))
+    console.log("local checkout is: \t\t" + ((remoteCommitsToPull == 0) ? chalk.bgGreen('fully pulled from remote') : chalk.bgRed('not pulled from remote') + ' - ' + remoteCommitsToPull + ' commits to `git pull` from remote'))
+    const localCommitsNotPushed = await git.localCommitsNotPushed()
+    console.log("local checkout is: \t\t"  + ((localCommitsNotPushed == 0) ? chalk.bgGreen('fully pushed to remote') : chalk.bgRed('not pushed to remote') + ' - ' + localCommitsNotPushed + ' commits to `git push` to remote'))
     console.log("working tree is: \t\t" + (await git.isWorkingTreeClean() ? chalk.bgGreen('clean') : chalk.bgRed('unclean') + ' - You should commit or stash changes first'))
     console.log()
 
@@ -42,10 +44,7 @@ class IdentifyCommand extends Command {
   }
 }
 
-IdentifyCommand.description = `Identify the project and output relevant information
-...
-Extra documentation goes here
-`
+IdentifyCommand.description = `Identify the project and output relevant information`
 
 IdentifyCommand.flags = {
   name: flags.string({char: 'n', description: 'name to print'}),
