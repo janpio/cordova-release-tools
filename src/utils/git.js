@@ -56,3 +56,16 @@ exports.isWorkingTreeClean = async () => {
 		return false;
 	}
 };
+
+exports.isCheckoutFetched = async () => {
+    let result;
+	try { // Gracefully handle no remote set up.
+        result = await execa.stderr('git', ['fetch', 'origin', '--dry-run']);
+	} catch (_) {}
+
+	if (result && result !== '') {
+		return false;
+	}
+
+    return true;
+};
