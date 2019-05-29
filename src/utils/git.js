@@ -55,7 +55,7 @@ exports.commitcountSinceLatestTag = async () => {
     return exports.remoteCommitsToPull(latestTag)
 }
 
-exports.commitLogFromRevision = revision => execa.stdout('git', ['log', '--format=%s %h', `${revision}..HEAD`]);
+exports.commitLogFromRevision = revision => execa.stdout('git', ['log', '--format=%s (%h)', `${revision}..HEAD`]);
 
 exports.isWorkingTreeClean = async () => {
 	try {
