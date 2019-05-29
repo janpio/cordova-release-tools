@@ -33,6 +33,7 @@ USAGE
 * [`cort hello`](#cort-hello)
 * [`cort help [COMMAND]`](#cort-help-command)
 * [`cort identify`](#cort-identify)
+* [`cort update-release-notes`](#cort-update-release-notes)
 
 ## `cort hello`
 
@@ -86,4 +87,15 @@ DESCRIPTION
 ```
 
 _See code: [src\commands\identify.js](https://github.com/janpio/cordova-release-tools/blob/v0.0.1/src\commands\identify.js)_
+
+## `cort update-release-notes`
+
+Update the project's `RELEASENOTES.md` with the relevant commits
+
+```
+USAGE
+  $ cort update-release-notes
+```
+
+_See code: [src\commands\update-release-notes.js](https://github.com/janpio/cordova-release-tools/blob/v0.0.1/src\commands\update-release-notes.js)_
 <!-- commandsstop -->

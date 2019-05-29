@@ -6,13 +6,13 @@ const git = require('../utils/git');
 const linkify = require('../utils/linkify');
 const chalk = require('chalk');
 const githubUrlFromGit = require('github-url-from-git');
-const util = require('../utils/utils');
+const utils = require('../utils/utils');
 
 class IdentifyCommand extends Command {
   async run() {
     const filePath = path.resolve(process.cwd(), 'package.json');
     parseJson(fs.readFileSync(filePath, 'utf8'));
-    const pkg = util.readPkg();
+    const pkg = utils.readPkg();
 
     console.log("Identify " + process.cwd() + ":")
     console.log()
@@ -68,17 +68,17 @@ const printCommitLog = async repoUrl => {
 
 	const commits = log.split('\n')
 		.map(commit => {
-			const splitIndex = commit.lastIndexOf(' ');
+			const splitIndex = commit.lastIndexOf('(');
 			return {
 				message: commit.slice(0, splitIndex),
-				id: commit.slice(splitIndex + 1)
+				id: commit.slice(splitIndex + 1).substr(0, 7)
 			};
 		});
 
 	const history = commits.map(commit => {
 		const commitMessage = linkify.issues(repoUrl, commit.message);
 		const commitId = linkify.commit(repoUrl, commit.id);
-		return `- ${commitMessage}  ${commitId}`;
+		return `- ${commitId} ${commitMessage}`;
 	}).join('\n');
 
 	const commitRange = linkify.commitRange(repoUrl, `${latest}...master`);
