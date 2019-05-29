@@ -28,6 +28,7 @@ class IdentifyCommand extends Command {
     console.log("current branch is: \t\t" + await git.currentBranch())
     const remoteCommitsToPull = await git.remoteCommitsToPull()
     console.log("local checkout is: \t\t" + ((remoteCommitsToPull == 0) ? chalk.bgGreen('current') : chalk.bgRed('outdated') + ', ' + remoteCommitsToPull + ' commits to pull'))
+    console.log("working tree is is: \t\t" + (await git.isWorkingTreeClean() ? chalk.bgGreen('clean') : chalk.bgRed('unclean') + ' - You should commit or stash changes first'))
     console.log()
 
     console.log("latest tag is: \t\t\t" + await git.latestTag())

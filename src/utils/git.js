@@ -18,6 +18,7 @@ exports.latestReleaseBranch = async () => {
     return branches.split('\n')[0].trim()
 }
 
+// adapted from isRemoteHistoryClean
 exports.remoteCommitsToPull = async (until = 'HEAD') => {
     let history;
 	try { // Gracefully handle no remote set up.
@@ -42,3 +43,16 @@ exports.commitcountSinceLatestTag = async () => {
 }
 
 exports.commitLogFromRevision = revision => execa.stdout('git', ['log', '--format=%s %h', `${revision}..HEAD`]);
+
+exports.isWorkingTreeClean = async () => {
+	try {
+		const {stdout: status} = await execa('git', ['status', '--porcelain']);
+		if (status !== '') {
+			return false;
+		}
+
+		return true;
+	} catch (_) {
+		return false;
+	}
+};
