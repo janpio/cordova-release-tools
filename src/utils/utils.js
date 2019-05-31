@@ -19,11 +19,20 @@ exports.createReleaseNotes = (log) => {
 		repository: 'apache/' + exports.readPkg().name,
 		listItemIndent: '1'
 	}
-	
+
 	// add list item marker
 	log = log.split('\n').map(commit => { return `- ${commit}`}).join('\n')
-	
+
 	const history = linkify(log, options)
 
 	return history
+}
+
+exports.extractPackageTypeFromPackageName = (name) => {
+  if (name.substring(0, 'cordova-plugin'.length) == 'cordova-plugin')
+    return 'plugin'
+  else if (['cordova-ios', 'cordova-android', 'cordova-android', 'cordova-browser', 'cordova-windows', 'cordova-electron'].includes(name))
+    return 'platform'
+  else
+    return undefined
 }
