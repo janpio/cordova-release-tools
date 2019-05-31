@@ -18,14 +18,14 @@ class IdentifyCommand extends Command {
     console.log()
 
     console.log("package name is: \t\t" + pkg.name)
-    console.log("⮡ package type is: \t\t" + extractPackageTypeFromPackageName(pkg.name))
+    console.log("⮡ package type is: \t\t" + utils.extractPackageTypeFromPackageName(pkg.name))
     console.log()
 
     console.log("package version is: \t\t" + pkg.version)
     console.log("⮡ next version is: \t\t" + pkg.version.replace('-dev', ''))
     console.log()
 
-    console.log("current branch is: \t\t" + await git.currentBranch())  
+    console.log("current branch is: \t\t" + await git.currentBranch())
     console.log("local checkout is: \t\t" + ((await git.isCheckoutFetched()) ? chalk.bgGreen('fully fetched from remote') : chalk.bgRed('not fetched from remote') + ' - You should `git fetch origin` the remote changes first'))
     const remoteCommitsToPull = await git.remoteCommitsToPull()
     console.log("local checkout is: \t\t" + ((remoteCommitsToPull == 0) ? chalk.bgGreen('fully pulled from remote') : chalk.bgRed('not pulled from remote') + ' - ' + remoteCommitsToPull + ' commits to `git pull` from remote'))
@@ -51,15 +51,6 @@ IdentifyCommand.flags = {
 }
 
 module.exports = IdentifyCommand
-
-const extractPackageTypeFromPackageName = (name) => {
-  if (name.substring(0, 'cordova-plugin'.length) == 'cordova-plugin')
-    return 'plugin'
-  else if (['cordova-ios', 'cordova-android', 'cordova-android', 'cordova-browser', 'cordova-windows'].includes(name))
-    return 'platform'
-  else
-    return undefined
-}
 
 // via https://github.com/sindresorhus/np/blob/0842b078126c2c3ebe5329e2feee487fb9f515be/source/ui.js#L12-L50
 const printCommitLog = async repoUrl => {
