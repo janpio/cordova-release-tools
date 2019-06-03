@@ -34,6 +34,8 @@ USAGE
 * [`cort help [COMMAND]`](#cort-help-command)
 * [`cort identify`](#cort-identify)
 * [`cort update-release-notes`](#cort-update-release-notes)
+* [`cort version:dev`](#cort-versiondev)
+* [`cort version:undev`](#cort-versionundev)
 
 ## `cort hello`
 
@@ -80,10 +82,6 @@ USAGE
 
 OPTIONS
   -n, --name=name  name to print
-
-DESCRIPTION
-  ...
-  Extra documentation goes here
 ```
 
 _See code: [src\commands\identify.js](https://github.com/janpio/cordova-release-tools/blob/v0.0.1/src\commands\identify.js)_
@@ -98,4 +96,26 @@ USAGE
 ```
 
 _See code: [src\commands\update-release-notes.js](https://github.com/janpio/cordova-release-tools/blob/v0.0.1/src\commands\update-release-notes.js)_
+
+## `cort version:dev`
+
+Adds the -dev suffix to version strings
+
+```
+USAGE
+  $ cort version:dev
+```
+
+_See code: [src\commands\version\dev.js](https://github.com/janpio/cordova-release-tools/blob/v0.0.1/src\commands\version\dev.js)_
+
+## `cort version:undev`
+
+Removes the -dev suffix from version strings
+
+```
+USAGE
+  $ cort version:undev
+```
+
+_See code: [src\commands\version\undev.js](https://github.com/janpio/cordova-release-tools/blob/v0.0.1/src\commands\version\undev.js)_
 <!-- commandsstop -->
