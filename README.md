@@ -32,6 +32,7 @@ USAGE
 <!-- commands -->
 * [`cort hello`](#cort-hello)
 * [`cort help [COMMAND]`](#cort-help-command)
+* [`cort identify`](#cort-identify)
 
 ## `cort hello`
 
@@ -67,4 +68,22 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.1.6/src\commands\help.ts)_
+
+## `cort identify`
+
+Identify the project and output relevant information
+
+```
+USAGE
+  $ cort identify
+
+OPTIONS
+  -n, --name=name  name to print
+
+DESCRIPTION
+  ...
+  Extra documentation goes here
+```
+
+_See code: [src\commands\identify.js](https://github.com/janpio/cordova-release-tools/blob/v0.0.1/src\commands\identify.js)_
 <!-- commandsstop -->
