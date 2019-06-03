@@ -1,7 +1,7 @@
 {
   "name": "cordova-release-tools",
   "description": "Tools for releasing Apache Cordova packages",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "author": "Jan Piotrowski @janpio",
   "bin": {
     "cort": "./bin/run"

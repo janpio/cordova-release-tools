@@ -21,7 +21,7 @@ $ npm install -g cordova-release-tools
 $ cort COMMAND
 running command...
 $ cort (-v|--version|version)
-cordova-release-tools/0.0.1 win32-x64 node-v12.3.1
+cordova-release-tools/0.1.0 win32-x64 node-v12.3.1
 $ cort --help [COMMAND]
 USAGE
   $ cort COMMAND
@@ -53,7 +53,7 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src\commands\hello.js](https://github.com/janpio/cordova-release-tools/blob/v0.0.1/src\commands\hello.js)_
+_See code: [src\commands\hello.js](https://github.com/janpio/cordova-release-tools/blob/v0.1.0/src\commands\hello.js)_
 
 ## `cort help [COMMAND]`
 
@@ -84,7 +84,7 @@ OPTIONS
   -n, --name=name  name to print
 ```
 
-_See code: [src\commands\identify.js](https://github.com/janpio/cordova-release-tools/blob/v0.0.1/src\commands\identify.js)_
+_See code: [src\commands\identify.js](https://github.com/janpio/cordova-release-tools/blob/v0.1.0/src\commands\identify.js)_
 
 ## `cort update-release-notes`
 
@@ -95,7 +95,7 @@ USAGE
   $ cort update-release-notes
 ```
 
-_See code: [src\commands\update-release-notes.js](https://github.com/janpio/cordova-release-tools/blob/v0.0.1/src\commands\update-release-notes.js)_
+_See code: [src\commands\update-release-notes.js](https://github.com/janpio/cordova-release-tools/blob/v0.1.0/src\commands\update-release-notes.js)_
 
 ## `cort version:dev`
 
@@ -106,7 +106,7 @@ USAGE
   $ cort version:dev
 ```
 
-_See code: [src\commands\version\dev.js](https://github.com/janpio/cordova-release-tools/blob/v0.0.1/src\commands\version\dev.js)_
+_See code: [src\commands\version\dev.js](https://github.com/janpio/cordova-release-tools/blob/v0.1.0/src\commands\version\dev.js)_
 
 ## `cort version:undev`
 
@@ -117,5 +117,5 @@ USAGE
   $ cort version:undev
 ```
 
-_See code: [src\commands\version\undev.js](https://github.com/janpio/cordova-release-tools/blob/v0.0.1/src\commands\version\undev.js)_
+_See code: [src\commands\version\undev.js](https://github.com/janpio/cordova-release-tools/blob/v0.1.0/src\commands\version\undev.js)_
 <!-- commandsstop -->
