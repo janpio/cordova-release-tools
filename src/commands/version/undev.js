@@ -7,6 +7,6 @@ class UndevCommand extends Command {
   }
 }
 
-UndevCommand.description = `Removes the -dev suffix from version strings`
+UndevCommand.description = `Removes the -dev suffix from version strings in all relevant files`
 
 module.exports = UndevCommand

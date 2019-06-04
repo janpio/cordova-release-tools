@@ -99,7 +99,7 @@ _See code: [src\commands\update-release-notes.js](https://github.com/janpio/cord
 
 ## `cort version:dev`
 
-Adds the -dev suffix to version strings
+Adds the -dev suffix to version strings in all relevant files
 
 ```
 USAGE
@@ -110,7 +110,7 @@ _See code: [src\commands\version\dev.js](https://github.com/janpio/cordova-relea
 
 ## `cort version:undev`
 
-Removes the -dev suffix from version strings
+Removes the -dev suffix from version strings in all relevant files
 
 ```
 USAGE

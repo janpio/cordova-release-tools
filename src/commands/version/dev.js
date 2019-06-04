@@ -7,6 +7,6 @@ class DevCommand extends Command {
   }
 }
 
-DevCommand.description = `Adds the -dev suffix to version strings`
+DevCommand.description = `Adds the -dev suffix to version strings in all relevant files`
 
 module.exports = DevCommand
