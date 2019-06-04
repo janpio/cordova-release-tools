@@ -82,3 +82,9 @@ exports.isCheckoutFetched = async () => {
 
     return true;
 };
+
+exports.addAndCommit = (commitMessage) => execa('git', ['commit', '-am', commitMessage])
+
+exports.tag = (version) => execa('git', ['tag', version]);
+
+exports.push = () => execa('git', ['push', '--follow-tags']);

@@ -33,6 +33,9 @@ USAGE
 * [`cort hello`](#cort-hello)
 * [`cort help [COMMAND]`](#cort-help-command)
 * [`cort identify`](#cort-identify)
+* [`cort release:commit`](#cort-releasecommit)
+* [`cort release:push`](#cort-releasepush)
+* [`cort release:tag`](#cort-releasetag)
 * [`cort update-release-notes`](#cort-update-release-notes)
 * [`cort version:dev`](#cort-versiondev)
 * [`cort version:undev`](#cort-versionundev)
@@ -85,6 +88,39 @@ OPTIONS
 ```
 
 _See code: [src\commands\identify.js](https://github.com/janpio/cordova-release-tools/blob/v0.1.0/src\commands\identify.js)_
+
+## `cort release:commit`
+
+Commit release changes (commits and tag)
+
+```
+USAGE
+  $ cort release:commit
+```
+
+_See code: [src\commands\release\commit.js](https://github.com/janpio/cordova-release-tools/blob/v0.1.0/src\commands\release\commit.js)_
+
+## `cort release:push`
+
+Push release commit and tag
+
+```
+USAGE
+  $ cort release:push
+```
+
+_See code: [src\commands\release\push.js](https://github.com/janpio/cordova-release-tools/blob/v0.1.0/src\commands\release\push.js)_
+
+## `cort release:tag`
+
+Tag current commit with current version
+
+```
+USAGE
+  $ cort release:tag
+```
+
+_See code: [src\commands\release\tag.js](https://github.com/janpio/cordova-release-tools/blob/v0.1.0/src\commands\release\tag.js)_
 
 ## `cort update-release-notes`
 
