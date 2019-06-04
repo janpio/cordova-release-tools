@@ -88,3 +88,7 @@ exports.addAndCommit = (commitMessage) => execa('git', ['commit', '-am', commitM
 exports.tag = (version) => execa('git', ['tag', version]);
 
 exports.push = () => execa('git', ['push', '--follow-tags']);
+
+exports.checkout = (version) => execa('git', ['checkout', version]);
+
+exports.rebase = () => execa('git', ['pull', '--rebase', 'origin', 'master'])

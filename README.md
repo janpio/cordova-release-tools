@@ -33,6 +33,8 @@ USAGE
 * [`cort hello`](#cort-hello)
 * [`cort help [COMMAND]`](#cort-help-command)
 * [`cort identify`](#cort-identify)
+* [`cort release-branch:checkout`](#cort-release-branchcheckout)
+* [`cort release-branch:rebase`](#cort-release-branchrebase)
 * [`cort release:commit`](#cort-releasecommit)
 * [`cort release:push`](#cort-releasepush)
 * [`cort release:tag`](#cort-releasetag)
@@ -88,6 +90,28 @@ OPTIONS
 ```
 
 _See code: [src\commands\identify.js](https://github.com/janpio/cordova-release-tools/blob/v0.1.0/src\commands\identify.js)_
+
+## `cort release-branch:checkout`
+
+Checks out the release branch for the current version
+
+```
+USAGE
+  $ cort release-branch:checkout
+```
+
+_See code: [src\commands\release-branch\checkout.js](https://github.com/janpio/cordova-release-tools/blob/v0.1.0/src\commands\release-branch\checkout.js)_
+
+## `cort release-branch:rebase`
+
+Rebases the currently checked out release branch onto master
+
+```
+USAGE
+  $ cort release-branch:rebase
+```
+
+_See code: [src\commands\release-branch\rebase.js](https://github.com/janpio/cordova-release-tools/blob/v0.1.0/src\commands\release-branch\rebase.js)_
 
 ## `cort release:commit`
 
