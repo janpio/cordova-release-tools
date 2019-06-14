@@ -7,8 +7,11 @@ class CommitCommand extends Command {
     const pkg = utils.readPkg();
     const currentVersion = pkg.version
 
-    const commitMessage = `chore(release): ${currentVersion} (version string + release notes)`
-    git.addAndCommit(commitMessage)
+    const commitMessage = `chore(release): release notes for ${currentVersion}`
+    git.addAndCommit(commitMessage, ['RELEASENOTES.md'])
+
+    const commitMessage2 = `chore(release): ${currentVersion} (version string)`
+    git.addAndCommit(commitMessage2)
   }
 }
 
