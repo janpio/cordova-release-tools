@@ -1,6 +1,8 @@
 const utils = require('./utils');
 const fs = require('fs')
 const chalk = require('chalk');
+const semver = require('semver')
+
 
 exports.updateVersionString = (action) => {
   const pkg = utils.readPkg();
@@ -14,7 +16,7 @@ exports.updateVersionString = (action) => {
     throw Error('version string is already correct for action `' + action + '`: ' + currentVersion)
   }
 
-  exports.writeVersionString(currentVersion, updatedVersion)
+  exports.writeVersionString(currentVersion, updatedVersion, true)
 }
 
 manipulateVersion = (action, version) => {
@@ -24,7 +26,13 @@ manipulateVersion = (action, version) => {
   return version
 }
 
-exports.writeVersionString = (currentVersion, updatedVersion) => {
+exports.bumpVersionString = () => {
+  const currentVersion = utils.readPkg().version
+  const bumpedVersion = semver.inc(currentVersion, 'patch')
+  exports.writeVersionString(currentVersion, bumpedVersion)
+}
+
+exports.writeVersionString = (currentVersion, updatedVersion, replaceInReleasenotes = false) => {
   {
     const packageType = utils.extractPackageTypeFromPackageName(utils.readPkg().name)
     if(packageType == 'plugin') {
@@ -34,7 +42,8 @@ exports.writeVersionString = (currentVersion, updatedVersion) => {
       replaceStringInFile('tests/plugin.xml', currentVersion, updatedVersion)
     }
   }
-  replaceStringInFile('RELEASENOTES.md', '### ' + currentVersion, '### ' + updatedVersion)
+  if(replaceInReleasenotes)
+    replaceStringInFile('RELEASENOTES.md', '### ' + currentVersion, '### ' + updatedVersion)
 }
 
 replaceStringInFile = (file, needle, haystack) => {

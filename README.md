@@ -41,6 +41,7 @@ USAGE
 * [`cort release:push`](#cort-releasepush)
 * [`cort release:tag`](#cort-releasetag)
 * [`cort update-release-notes`](#cort-update-release-notes)
+* [`cort version:bump`](#cort-versionbump)
 * [`cort version:dev`](#cort-versiondev)
 * [`cort version:undev`](#cort-versionundev)
 
@@ -57,7 +58,7 @@ _See code: [src\commands\apache\archive.js](https://github.com/janpio/cordova-re
 
 ## `cort apache:upload`
 
-Describe the command here
+Upload archive to Apache SVN dist/dev
 
 ```
 USAGE
@@ -187,6 +188,24 @@ USAGE
 ```
 
 _See code: [src\commands\update-release-notes.js](https://github.com/janpio/cordova-release-tools/blob/v0.1.0/src\commands\update-release-notes.js)_
+
+## `cort version:bump`
+
+Describe the command here
+
+```
+USAGE
+  $ cort version:bump
+
+OPTIONS
+  -n, --name=name  name to print
+
+DESCRIPTION
+  ...
+  Extra documentation goes here
+```
+
+_See code: [src\commands\version\bump.js](https://github.com/janpio/cordova-release-tools/blob/v0.1.0/src\commands\version\bump.js)_
 
 ## `cort version:dev`
 
