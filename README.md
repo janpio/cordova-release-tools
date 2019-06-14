@@ -30,6 +30,7 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
+* [`cort apache:archive`](#cort-apachearchive)
 * [`cort hello`](#cort-hello)
 * [`cort help [COMMAND]`](#cort-help-command)
 * [`cort identify`](#cort-identify)
@@ -41,6 +42,17 @@ USAGE
 * [`cort update-release-notes`](#cort-update-release-notes)
 * [`cort version:dev`](#cort-versiondev)
 * [`cort version:undev`](#cort-versionundev)
+
+## `cort apache:archive`
+
+Creates an archive (.tar.gz, .asc, .sha) for the "current tag"
+
+```
+USAGE
+  $ cort apache:archive
+```
+
+_See code: [src\commands\apache\archive.js](https://github.com/janpio/cordova-release-tools/blob/v0.1.0/src\commands\apache\archive.js)_
 
 ## `cort hello`
 
