@@ -31,6 +31,7 @@ USAGE
 # Commands
 <!-- commands -->
 * [`cort apache:archive`](#cort-apachearchive)
+* [`cort apache:upload`](#cort-apacheupload)
 * [`cort hello`](#cort-hello)
 * [`cort help [COMMAND]`](#cort-help-command)
 * [`cort identify`](#cort-identify)
@@ -53,6 +54,24 @@ USAGE
 ```
 
 _See code: [src\commands\apache\archive.js](https://github.com/janpio/cordova-release-tools/blob/v0.1.0/src\commands\apache\archive.js)_
+
+## `cort apache:upload`
+
+Describe the command here
+
+```
+USAGE
+  $ cort apache:upload
+
+OPTIONS
+  -n, --name=name  name to print
+
+DESCRIPTION
+  ...
+  Extra documentation goes here
+```
+
+_See code: [src\commands\apache\upload.js](https://github.com/janpio/cordova-release-tools/blob/v0.1.0/src\commands\apache\upload.js)_
 
 ## `cort hello`
 
