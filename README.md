@@ -38,6 +38,7 @@ USAGE
 * [`cort release-branch:checkout`](#cort-release-branchcheckout)
 * [`cort release-branch:rebase`](#cort-release-branchrebase)
 * [`cort release:commit`](#cort-releasecommit)
+* [`cort release:preparecommit`](#cort-releasepreparecommit)
 * [`cort release:push`](#cort-releasepush)
 * [`cort release:tag`](#cort-releasetag)
 * [`cort update-release-notes`](#cort-update-release-notes)
@@ -156,6 +157,24 @@ USAGE
 
 _See code: [src\commands\release\commit.js](https://github.com/janpio/cordova-release-tools/blob/v0.1.0/src\commands\release\commit.js)_
 
+## `cort release:preparecommit`
+
+Describe the command here
+
+```
+USAGE
+  $ cort release:preparecommit
+
+OPTIONS
+  -n, --name=name  name to print
+
+DESCRIPTION
+  ...
+  Extra documentation goes here
+```
+
+_See code: [src\commands\release\preparecommit.js](https://github.com/janpio/cordova-release-tools/blob/v0.1.0/src\commands\release\preparecommit.js)_
+
 ## `cort release:push`
 
 Push release commit and tag
@@ -191,18 +210,11 @@ _See code: [src\commands\update-release-notes.js](https://github.com/janpio/cord
 
 ## `cort version:bump`
 
-Describe the command here
+Bump all version strings
 
 ```
 USAGE
   $ cort version:bump
-
-OPTIONS
-  -n, --name=name  name to print
-
-DESCRIPTION
-  ...
-  Extra documentation goes here
 ```
 
 _See code: [src\commands\version\bump.js](https://github.com/janpio/cordova-release-tools/blob/v0.1.0/src\commands\version\bump.js)_
