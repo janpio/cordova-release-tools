@@ -1,10 +1,10 @@
 const {Command} = require('@oclif/command')
-const utils = require('../../utils/utils');
-const git = require('../../utils/git');
+const utils = require('../../utils/utils')
+const git = require('../../utils/git')
 
 class CommitCommand extends Command {
   async run() {
-    const pkg = utils.readPkg();
+    const pkg = utils.readPkg()
     const currentVersion = pkg.version
 
     const commitMessage = `chore(release): release notes for ${currentVersion}`
