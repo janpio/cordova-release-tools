@@ -13,17 +13,20 @@
 - Manual: Curate release notes
 - `cort version:undev`
 - `cort release:commit`
-- `cort release:votetag` (TODO, currently `release:tag`)
+- Check for CRLF linebreaks: https://github.com/apache/cordova-contribute/pull/27/files#diff-984f42e3d82cc870cf1726a6d3c092cd
+- `cort release:votetag` (TODO, currently `cort release:tag`)
 - `cort apache:archive`
 - `cort apache:upload`
-- `cort apache:votemail`
+- `cort apache:votemail` TODO should also automatically get tag and commit (a la `coho print-tags -r cordova-plugin-wkwebview-engine`)
 
 ### Enable further development
 
 - `cort version:bump`
-- `cort version:dev`
+- `cort version:dev` 
+- Remove archive files (TODO automate)
 - `cort release:preparecommit`
 - `cort release:push`
+- `git push --tags` (TODO automate)
 
 ## Finish
 
