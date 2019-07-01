@@ -12,6 +12,6 @@ class PreparecommitCommand extends Command {
   }
 }
 
-PreparecommitCommand.description = `Commit prepare changes (after release)`
+PreparecommitCommand.description = `Commit prepared changes (after release)`
 
 module.exports = PreparecommitCommand
