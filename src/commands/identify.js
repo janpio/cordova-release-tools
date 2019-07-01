@@ -18,7 +18,7 @@ class IdentifyCommand extends Command {
     console.log()
 
     console.log("package name is: \t\t" + pkg.name)
-    console.log("⮡ package type is: \t\t" + utils.extractPackageTypeFromPackageName(pkg.name))
+    console.log("⮡ package type is: \t\t" + ((typeof utils.extractPackageTypeFromPackageName(pkg.name) !== 'undefined') ? chalk.bgGreen(utils.extractPackageTypeFromPackageName(pkg.name)) : chalk.bgRed('undefined')))
     console.log()
 
     console.log("package version is: \t\t" + pkg.version)
