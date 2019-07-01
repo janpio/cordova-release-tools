@@ -2,8 +2,9 @@
 const execa = require('execa')
 
 exports.checkout = async (repo, path, options) => {
+  console.log("svn checkout", repo, path, options)
   try {
-    execa.stdout('svn', ['checkout', repo, path, '--trust-server-cert', '--non-interactive'], options)
+    await execa.stdout('svn', ['checkout', repo, path, '--trust-server-cert', '--non-interactive'], options)
   } catch (error) {
     console.log(error)
   }
