@@ -10,9 +10,7 @@ const utils = require('../utils/utils');
 
 class IdentifyCommand extends Command {
   async run() {
-    const filePath = path.resolve(process.cwd(), 'package.json');
-    parseJson(fs.readFileSync(filePath, 'utf8'));
-    const pkg = utils.readPkg();
+    const pkg = utils.readPkg()
 
     console.log("Identify " + process.cwd() + ":")
     console.log()
