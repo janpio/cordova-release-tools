@@ -27,7 +27,7 @@ const getSvnRepo = (dotcort, folder) => {
     }
   }
 
-  let svnUrl = svnUrlBase + folder + '/cordova'
+  let svnUrl = svnUrlBase + folder + '/cordova/'
   let checkoutFolder = checkoutFolderBase + folder
 
   return {svnUrl: svnUrl, checkoutFolder: checkoutFolder}
@@ -60,9 +60,9 @@ const updateDistCheckout = async folder => {
   await svn.up(getSvnOptions(folder))
 }
 
-const addFolderToDist = async (folder, folderToAdd) => {
-  console.log('add folder to SVN repo', folder, folderToAdd)
-  await svn.add(folderToAdd, getSvnOptions(folder))
+const addPathToDist = async (folder, pathToAdd) => {
+  console.log('add path to SVN repo', folder, pathToAdd)
+  await svn.add(pathToAdd, getSvnOptions(folder))
 }
 
 const commitDist = async (folder, message) => {
@@ -76,8 +76,21 @@ const makeSureDistIsCheckedOutAndUpdated = async folder => {
   return checkoutpath
 }
 
+const removePathfromDist = async (folder, pathToRemove) => {
+  console.log('remove path from SVN repo', folder, pathToRemove)
+  await svn.rm(pathToRemove, getSvnOptions(folder))
+}
+
+const getDistRepoUrl = folder => {
+  const dotcort = getAndCreateConfigFolder()
+  const svnRepo = getSvnRepo(dotcort, folder)
+  return svnRepo.svnUrl
+}
+
 module.exports = {
   makeSureDistIsCheckedOutAndUpdated,
-  addFolderToDist,
+  addPathToDist,
   commitDist,
+  removePathfromDist,
+  getDistRepoUrl,
 }

@@ -31,6 +31,7 @@ USAGE
 # Commands
 <!-- commands -->
 * [`cort apache:archive`](#cort-apachearchive)
+* [`cort apache:move RELEASENAME`](#cort-apachemove-releasename)
 * [`cort apache:upload`](#cort-apacheupload)
 * [`cort hello`](#cort-hello)
 * [`cort help [COMMAND]`](#cort-help-command)
@@ -57,6 +58,20 @@ USAGE
 
 _See code: [src\commands\apache\archive.js](https://github.com/janpio/cordova-release-tools/blob/v0.1.0/src\commands\apache\archive.js)_
 
+## `cort apache:move RELEASENAME`
+
+Move uploaded archive from Apache SVN dist/dev to dist/release
+
+```
+USAGE
+  $ cort apache:move RELEASENAME
+
+ARGUMENTS
+  RELEASENAME  name of release to move
+```
+
+_See code: [src\commands\apache\move.js](https://github.com/janpio/cordova-release-tools/blob/v0.1.0/src\commands\apache\move.js)_
+
 ## `cort apache:upload`
 
 Upload archive to Apache SVN dist/dev
@@ -64,13 +79,6 @@ Upload archive to Apache SVN dist/dev
 ```
 USAGE
   $ cort apache:upload
-
-OPTIONS
-  -n, --name=name  name to print
-
-DESCRIPTION
-  ...
-  Extra documentation goes here
 ```
 
 _See code: [src\commands\apache\upload.js](https://github.com/janpio/cordova-release-tools/blob/v0.1.0/src\commands\apache\upload.js)_
@@ -159,7 +167,7 @@ _See code: [src\commands\release\commit.js](https://github.com/janpio/cordova-re
 
 ## `cort release:preparecommit`
 
-Describe the command here
+Commit prepared changes (after release)
 
 ```
 USAGE

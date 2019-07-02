@@ -23,8 +23,8 @@ class UploadCommand extends Command {
     fs.copyFileSync(tgzName + '.asc', path.join(targetPath, tgzName + '.asc'))
     // TODO remove files after they were copied
 
-    await configfolder.addFolderToDist('dev', releaseName)
-    await configfolder.commitDist('dev', `Uploading release candidates for plugins release (${releaseName})`)
+    await configfolder.addPathToDist('dev', releaseName)
+    await configfolder.commitDist('dev', `Uploading release candidates to dist-dev for plugins release (${releaseName})`)
   }
 }
 

@@ -15,3 +15,5 @@ exports.up = async options => execa.stdout('svn', ['up'], options)
 exports.add = async (folder, options) => execa.stdout('svn', ['add', folder], options)
 
 exports.commit = async (message, options) => execa.stdout('svn', ['commit', '-m', message], options)
+
+exports.rm = async (path, options) => execa.stdout('svn', ['rm', path], options)

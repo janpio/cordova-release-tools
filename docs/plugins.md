@@ -32,7 +32,7 @@
 
 ### If vote succeeds
 
-- `cort apache:move`
+- `cort apache:move foo-1.2.3`
 - `cort release:tag`
 - `cort release:publish`
 - Manual: Cherry pick changes from release branch to `master`
