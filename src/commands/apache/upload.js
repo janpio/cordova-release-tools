@@ -8,7 +8,7 @@ const fs = require('fs')
 
 class UploadCommand extends Command {
   async run() {
-    const distCheckoutpath = await configfolder.makeSureDistIsCheckedOutAndUpdated()
+    const distCheckoutpath = await configfolder.makeSureDistIsCheckedOutAndUpdated('dev')
 
     const version = utils.readPkg().version
     const pkgName = utils.readPkg().name
@@ -22,8 +22,9 @@ class UploadCommand extends Command {
     fs.copyFileSync(tgzName + '.sha512', path.join(targetPath, tgzName + '.sha512'))
     fs.copyFileSync(tgzName + '.asc', path.join(targetPath, tgzName + '.asc'))
     // TODO remove files after they were copied
-    await configfolder.addFolderToDist(releaseName)
-    await configfolder.commitDist(`Uploading release candidates for plugins release (${releaseName})`)
+
+    await configfolder.addFolderToDist('dev', releaseName)
+    await configfolder.commitDist('dev', `Uploading release candidates for plugins release (${releaseName})`)
   }
 }
 

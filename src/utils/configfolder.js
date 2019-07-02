@@ -2,59 +2,82 @@ const fs = require('fs')
 const path = require('path')
 const svn = require('./svn')
 
-exports.getAndCreateConfigFolder = () => {
+const getAndCreateConfigFolder = () => {
   const dotcort = path.join(require('os').homedir(), '.cort')
   if (!fs.existsSync(dotcort)) fs.mkdirSync(dotcort)
   return dotcort
 }
 
-exports.makeSureDistIsCheckedOutAndUpdated = async () => {
-  const checkoutpath = await this.makeSureDistIsCheckedOut()
-  await this.updateDistCheckout()
-  return checkoutpath
-}
+//
 
-exports.makeSureDistIsCheckedOut = async () => {
-  const dotcort = this.getAndCreateConfigFolder()
-  const svnOptions = {cwd: dotcort}
-
-  let svnUrl = 'https://dist.apache.org/repos/dist/dev/cordova'
-  let checkoutFolder = 'cordova-dist-dev'
+const getSvnRepo = (dotcort, folder) => {
+  let svnUrlBase = 'https://dist.apache.org/repos/dist/'
+  let checkoutFolderBase = 'cordova-dist-'
 
   // overwrite by local svnRepo information if present
   try {
     const svnRepo = JSON.parse(fs.readFileSync(path.join(dotcort, 'svnRepo.json')))
-    svnUrl = svnRepo.svnUrl
-    checkoutFolder = svnRepo.checkoutFolder
-  } catch (error) {}
+    svnUrlBase = svnRepo.svnUrlBase
+    checkoutFolderBase = svnRepo.checkoutFolderBase
+  } catch (error) {
+    if (error.code === 'ENOENT') {
+      // do nothing
+    } else {
+      console.log(error)
+    }
+  }
 
-  console.log('checkout SVN repo (if needed)', svnUrl, checkoutFolder)
+  let svnUrl = svnUrlBase + folder + '/cordova'
+  let checkoutFolder = checkoutFolderBase + folder
 
-  const checkoutpath = path.join(svnOptions.cwd, checkoutFolder)
+  return {svnUrl: svnUrl, checkoutFolder: checkoutFolder}
+}
+
+const makeSureDistIsCheckedOut = async folder => {
+  const dotcort = getAndCreateConfigFolder()
+  const svnOptions = {cwd: dotcort}
+  const svnRepo = getSvnRepo(dotcort, folder)
+
+  console.log('checkout SVN repo (if needed)', svnRepo.svnUrl, svnRepo.checkoutFolder)
+
+  const checkoutpath = path.join(svnOptions.cwd, svnRepo.checkoutFolder)
   if (!fs.existsSync(checkoutpath)) {
-    await svn.checkout(svnUrl, checkoutFolder, svnOptions)
+    await svn.checkout(svnRepo.svnUrl, svnRepo.checkoutFolder, svnOptions)
   }
   return checkoutpath
 }
 
-exports.getSvnOptions = () => {
-  const dotcort = this.getAndCreateConfigFolder()
-  const checkoutpath = path.join(dotcort, 'pseudo-cordova-dist-dev')
+const getSvnOptions = folder => {
+  const dotcort = getAndCreateConfigFolder()
+  const svnRepo = getSvnRepo(dotcort, folder)
+  const checkoutpath = path.join(dotcort, svnRepo.checkoutFolder)
   const svnOptions = {cwd: checkoutpath}
   return svnOptions
 }
 
-exports.updateDistCheckout = async () => {
-  console.log('update SVN repo')
-  await svn.up(this.getSvnOptions())
+const updateDistCheckout = async folder => {
+  console.log('update SVN repo', folder)
+  await svn.up(getSvnOptions(folder))
 }
 
-exports.addFolderToDist = async folder => {
-  console.log('add folder to SVN repo', folder)
-  await svn.add(folder, this.getSvnOptions())
+const addFolderToDist = async (folder, folderToAdd) => {
+  console.log('add folder to SVN repo', folder, folderToAdd)
+  await svn.add(folderToAdd, getSvnOptions(folder))
 }
 
-exports.commitDist = async message => {
-  console.log('commit changes to SVN', message)
-  await svn.commit(message, this.getSvnOptions())
+const commitDist = async (folder, message) => {
+  console.log('commit changes to SVN', folder, message)
+  await svn.commit(message, getSvnOptions(folder))
+}
+
+const makeSureDistIsCheckedOutAndUpdated = async folder => {
+  const checkoutpath = await makeSureDistIsCheckedOut(folder)
+  await updateDistCheckout(folder)
+  return checkoutpath
+}
+
+module.exports = {
+  makeSureDistIsCheckedOutAndUpdated,
+  addFolderToDist,
+  commitDist,
 }
