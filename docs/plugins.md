@@ -15,6 +15,7 @@
 - `cort release:commit`
 - Check for CRLF linebreaks: https://github.com/apache/cordova-contribute/pull/27/files#diff-984f42e3d82cc870cf1726a6d3c092cd
 - `cort release:votetag`
+- `cort release:push`
 - `cort apache:archive`
 - `cort apache:upload`
 - `cort apache:votemail` TODO should also automatically get tag and commit (a la `coho print-tags -r cordova-plugin-wkwebview-engine`)
@@ -26,7 +27,6 @@
 - Remove archive files (TODO automate)
 - `cort release:preparecommit`
 - `cort release:push`
-- `git push --tags` (TODO automate)
 
 ## Finish
 
@@ -35,6 +35,7 @@
 - `cort apache:move foo-1.2.3`
 - `cort release:publish foo-1.2.3`
 - `cort release:tag`
+- `cort release:push`
 - Manual: Cherry pick changes from release branch to `master`
 - `cort apache:releasemail`
 

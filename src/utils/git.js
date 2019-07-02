@@ -99,6 +99,8 @@ exports.push = (what = null) => {
   execa.stdout('git', command)
 }
 
+exports.pushTags = () => execa.stdout('git', ['push', '--tags'])
+
 exports.checkout = version => execa.stdout('git', ['checkout', version])
 
 exports.rebase = () => execa.stdout('git', ['pull', '--rebase', 'origin', 'master'])
