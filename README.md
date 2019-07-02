@@ -42,6 +42,7 @@ USAGE
 * [`cort release:preparecommit`](#cort-releasepreparecommit)
 * [`cort release:publish RELEASENAME`](#cort-releasepublish-releasename)
 * [`cort release:push`](#cort-releasepush)
+* [`cort release:tag`](#cort-releasetag)
 * [`cort release:votetag`](#cort-releasevotetag)
 * [`cort update-release-notes`](#cort-update-release-notes)
 * [`cort version:bump`](#cort-versionbump)
@@ -201,6 +202,17 @@ USAGE
 ```
 
 _See code: [src\commands\release\push.js](https://github.com/janpio/cordova-release-tools/blob/v0.1.0/src\commands\release\push.js)_
+
+## `cort release:tag`
+
+Checkout last tag, and tag with release tag
+
+```
+USAGE
+  $ cort release:tag
+```
+
+_See code: [src\commands\release\tag.js](https://github.com/janpio/cordova-release-tools/blob/v0.1.0/src\commands\release\tag.js)_
 
 ## `cort release:votetag`
 

@@ -85,14 +85,20 @@ exports.isCheckoutFetched = async () => {
 }
 
 exports.addAndCommit = (commitMessage, files = ['.']) => {
-  execa('git', ['add'].concat(files))
-  execa('git', ['commit', '-m', commitMessage])
+  execa.stdout('git', ['add'].concat(files))
+  execa.stdout('git', ['commit', '-m', commitMessage])
 }
 
-exports.tag = version => execa('git', ['tag', version])
+exports.tag = version => execa.stdout('git', ['tag', version])
 
-exports.push = () => execa('git', ['push', '--follow-tags'])
+exports.push = (what = null) => {
+  let command = ['push', '--follow-tags']
+  if (what) {
+    command = command.concat(['origin', what])
+  }
+  execa.stdout('git', command)
+}
 
-exports.checkout = version => execa('git', ['checkout', version])
+exports.checkout = version => execa.stdout('git', ['checkout', version])
 
-exports.rebase = () => execa('git', ['pull', '--rebase', 'origin', 'master'])
+exports.rebase = () => execa.stdout('git', ['pull', '--rebase', 'origin', 'master'])
