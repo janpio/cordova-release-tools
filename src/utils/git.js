@@ -1,97 +1,98 @@
-'use strict';
-const execa = require('execa');
+'use strict'
+const execa = require('execa')
 
 /*
  * mostly copy pasted from https://github.com/sindresorhus/np/blob/master/source/git-util.js
+ * then adapted to make the local eslint rules happy
  */
 
-exports.currentBranch = () => execa.stdout('git', ['symbolic-ref', '--short', 'HEAD']);
+exports.currentBranch = () => execa.stdout('git', ['symbolic-ref', '--short', 'HEAD'])
 
 exports.latestTag = async () => {
-    const latestCommit = await execa.stdout('git', ['rev-list', '--tags', '--max-count=1']);
-    return await execa.stdout('git', ['describe', '--abbrev=0', '--tags', latestCommit]);
-    //execa.stdout('git', ['describe', '--abbrev=0', '--tags']);
+  const latestCommit = await execa.stdout('git', ['rev-list', '--tags', '--max-count=1'])
+  return execa.stdout('git', ['describe', '--abbrev=0', '--tags', latestCommit])
+  // execa.stdout('git', ['describe', '--abbrev=0', '--tags'])
 }
 
 exports.latestReleaseBranch = async () => {
-    const branches = await execa.stdout('git', ['branch', '-r', '--list', '*.x', '--sort=-refname']);
-    return branches.split('\n')[0].trim()
+  const branches = await execa.stdout('git', ['branch', '-r', '--list', '*.x', '--sort=-refname'])
+  return branches.split('\n')[0].trim()
 }
 
 // adapted from isRemoteHistoryClean
 exports.remoteCommitsToPull = async (until = 'HEAD') => {
-    let history;
-	try { // Gracefully handle no remote set up.
-		history = await execa.stdout('git', ['rev-list', '--count', '--left-only', '@{u}...' + until]);
-	} catch (_) {}
+  let history
+  try { // Gracefully handle no remote set up.
+    history = await execa.stdout('git', ['rev-list', '--count', '--left-only', '@{u}...' + until])
+  } catch (_) {}
 
-	if (history && history !== '0') {
-		return history;
-	}
+  if (history && history !== '0') {
+    return history
+  }
 
-	return history;
-};
+  return history
+}
 
 exports.localCommitsNotPushed = async () => {
-    let commits;
-    try { // Gracefully handle no remote set up.
-        commits = await execa.stdout('git', ['cherry', '-v']);
-    } catch (_) {}
+  let commits
+  try { // Gracefully handle no remote set up.
+    commits = await execa.stdout('git', ['cherry', '-v'])
+  } catch (_) {}
 
-    if (commits) {
-        return commits.split('\n').length;
-    }
+  if (commits) {
+    return commits.split('\n').length
+  }
 
-    return 0;
-};
-
-exports.commitcountSinceLatestTag = async () => {
-    const latestTag = await exports.latestTag()
-    return exports.remoteCommitsToPull(latestTag)
+  return 0
 }
 
 exports.commitcountSinceLatestTag = async () => {
-    const latestTag = await exports.latestTag()
-    return exports.remoteCommitsToPull(latestTag)
+  const latestTag = await exports.latestTag()
+  return exports.remoteCommitsToPull(latestTag)
 }
 
-exports.commitLogFromRevision = revision => execa.stdout('git', ['log', '--format=%s (%h)', `${revision}..HEAD`]);
+exports.commitcountSinceLatestTag = async () => {
+  const latestTag = await exports.latestTag()
+  return exports.remoteCommitsToPull(latestTag)
+}
+
+exports.commitLogFromRevision = revision => execa.stdout('git', ['log', '--format=%s (%h)', `${revision}..HEAD`])
 
 exports.isWorkingTreeClean = async () => {
-	try {
-		const {stdout: status} = await execa('git', ['status', '--porcelain']);
-		if (status !== '') {
-			return false;
-		}
+  try {
+    const {stdout: status} = await execa('git', ['status', '--porcelain'])
+    if (status !== '') {
+      return false
+    }
 
-		return true;
-	} catch (_) {
-		return false;
-	}
-};
+    return true
+  } catch (_) {
+    return false
+  }
+}
 
 exports.isCheckoutFetched = async () => {
-    let result;
-	try { // Gracefully handle no remote set up.
-        result = await execa.stderr('git', ['fetch', 'origin', '--dry-run']);
-	} catch (_) {}
+  let result
+  try { // Gracefully handle no remote set up.
+    result = await execa.stderr('git', ['fetch', 'origin', '--dry-run'])
+  } catch (_) {}
 
-	if (result && result !== '') {
-		return false;
-	}
+  if (result && result !== '') {
+    return false
+  }
 
-    return true;
-};
+  return true
+}
 
 exports.addAndCommit = (commitMessage, files = ['.']) => {
   execa('git', ['add'].concat(files))
   execa('git', ['commit', '-m', commitMessage])
 }
 
-exports.tag = (version) => execa('git', ['tag', version]);
+exports.tag = version => execa('git', ['tag', version])
 
-exports.push = () => execa('git', ['push', '--follow-tags']);
+exports.push = () => execa('git', ['push', '--follow-tags'])
 
-exports.checkout = (version) => execa('git', ['checkout', version]);
+exports.checkout = version => execa('git', ['checkout', version])
 
 exports.rebase = () => execa('git', ['pull', '--rebase', 'origin', 'master'])
