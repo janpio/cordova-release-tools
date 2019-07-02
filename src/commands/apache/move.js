@@ -1,6 +1,5 @@
 const {Command} = require('@oclif/command')
 
-const utils = require('../../utils/utils')
 const configfolder = require('../../utils/configfolder')
 
 const path = require('path')

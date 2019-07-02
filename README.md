@@ -40,6 +40,7 @@ USAGE
 * [`cort release-branch:rebase`](#cort-release-branchrebase)
 * [`cort release:commit`](#cort-releasecommit)
 * [`cort release:preparecommit`](#cort-releasepreparecommit)
+* [`cort release:publish RELEASENAME`](#cort-releasepublish-releasename)
 * [`cort release:push`](#cort-releasepush)
 * [`cort release:votetag`](#cort-releasevotetag)
 * [`cort update-release-notes`](#cort-update-release-notes)
@@ -172,16 +173,23 @@ Commit prepared changes (after release)
 ```
 USAGE
   $ cort release:preparecommit
-
-OPTIONS
-  -n, --name=name  name to print
-
-DESCRIPTION
-  ...
-  Extra documentation goes here
 ```
 
 _See code: [src\commands\release\preparecommit.js](https://github.com/janpio/cordova-release-tools/blob/v0.1.0/src\commands\release\preparecommit.js)_
+
+## `cort release:publish RELEASENAME`
+
+Publish the defined release to npm (from dist/release)
+
+```
+USAGE
+  $ cort release:publish RELEASENAME
+
+ARGUMENTS
+  RELEASENAME  name of release to publish
+```
+
+_See code: [src\commands\release\publish.js](https://github.com/janpio/cordova-release-tools/blob/v0.1.0/src\commands\release\publish.js)_
 
 ## `cort release:push`
 
