@@ -29,7 +29,8 @@ class MoveCommand extends Command {
     // releaseName + '.tgz.'
 
     // remove previous released version (extract from releaseName somehow) from dist-release/plugins
-    const projectName = releaseName.replace(releaseName.substring(releaseName.lastIndexOf('-')), '')
+    const version = releaseName.substring(releaseName.lastIndexOf('-'))
+    const projectName = releaseName.replace(version, '')
     const pathToDelete = path.join('plugins', projectName + '*') // files
     try {
       await configfolder.removePathfromDist('release', pathToDelete)
@@ -65,9 +66,11 @@ class MoveCommand extends Command {
     // remove published release from dist-dev
     await configfolder.makeSureDistIsCheckedOutAndUpdated('dev')
     const pathToDelete2 = releaseName // folder
-    this.log('removing folder from dist-dev: ', pathToDelete2)
+    this.log('removing folder from dist-dev:', pathToDelete2)
     await configfolder.removePathfromDist('dev', pathToDelete2)
     await configfolder.commitDist('dev', `Removing release candidates from dist-dev (${releaseName})`)
+
+    // TODO Combine both commits for release and dev into one commit - has to happen in one big checkout though
   }
 }
 
