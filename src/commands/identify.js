@@ -23,7 +23,8 @@ class IdentifyCommand extends Command {
     console.log("⮡ next version is: \t\t" + pkg.version.replace('-dev', ''))
     console.log()
 
-    console.log("current branch is: \t\t" + await git.currentBranch())
+    const currentBranch = await git.currentBranch()
+    console.log("current branch is: \t\t" + ((currentBranch === 'master') ? chalk.bgGreen(currentBranch) : chalk.bgRed(currentBranch)))
     console.log("local checkout is: \t\t" + ((await git.isCheckoutFetched()) ? chalk.bgGreen('fully fetched from remote') : chalk.bgRed('not fetched from remote') + ' - You should `git fetch origin` the remote changes first'))
     const remoteCommitsToPull = await git.remoteCommitsToPull()
     console.log("local checkout is: \t\t" + ((remoteCommitsToPull == 0) ? chalk.bgGreen('fully pulled from remote') : chalk.bgRed('not pulled from remote') + ' - ' + remoteCommitsToPull + ' commits to `git pull` from remote'))
