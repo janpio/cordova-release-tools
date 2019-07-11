@@ -26,6 +26,8 @@ class PublishCommand extends Command {
 
     // call npm publish for releaseName.tgz
     await npm.publish(releaseArchivePath, otp)
+
+    // TODO Check on npm via https://www.npmjs.com/package/*
   }
 }
 
