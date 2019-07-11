@@ -26,11 +26,7 @@ exports.remoteCommitsToPull = async (until = 'HEAD') => {
     history = await execa.stdout('git', ['rev-list', '--count', '--left-only', '@{u}...' + until])
   } catch (_) {}
 
-  if (history && history !== '0') {
-    return history
-  }
-
-  return history
+  return parseInt(history, 10)
 }
 
 exports.localCommitsNotPushed = async () => {
@@ -44,11 +40,6 @@ exports.localCommitsNotPushed = async () => {
   }
 
   return 0
-}
-
-exports.commitcountSinceLatestTag = async () => {
-  const latestTag = await exports.latestTag()
-  return exports.remoteCommitsToPull(latestTag)
 }
 
 exports.commitcountSinceLatestTag = async () => {
